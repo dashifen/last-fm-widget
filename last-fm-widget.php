@@ -44,12 +44,15 @@ class dashifen_last_fm_widget extends WP_Widget {
 					from <a href="http://www.last.fm/music/<?=urlencode($song_data["artist"])?>/<?=urlencode($song_data["album"])?>"><?=$song_data["album"]?></a>
 					<?=$song_data["now_playing"] ? "right now!" : "on ".$song_data["date"]."."; ?></p>
 			<? } else { ?>
+				<img src="<?= plugin_dir_url(__FILE__) . "cd.png" ?>" alt="a compact disc">
+
 				<p>Dash <?=$song_data["now_playing"]? "is listening" : "listened"?> to
 					<?=$song_data["song"]?> by <?=$song_data["artist"] ?>
 					<?=$song_data["now_playing"] ? "right now!" : "on " . $song_data["date"]. "."; ?></p>
 			<? }
 
-			$widget .= sprintf($widget, ob_get_clean());
+			$display = ob_get_clean();
+			$widget  = sprintf($widget, $display);
 		}
 
 		echo $widget;
@@ -73,16 +76,16 @@ class dashifen_last_fm_widget extends WP_Widget {
 		$instance = wp_parse_args((array) $instance, $defaults); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id("last_fm_title"); ?>"><strong>Title:</strong></label>
-			<input id="<?php echo $this->get_field_id("last_fm_title"); ?>" name="<?php echo $this->get_field_name("last_fm_title"); ?>" value="<?php echo $instance["last_fm_title"]; ?>" size="25">
+			<label for="<?php echo $this->get_field_id("last_fm_title"); ?>">Widget's Title:</label>
+			<input id="<?php echo $this->get_field_id("last_fm_title"); ?>" name="<?php echo $this->get_field_name("last_fm_title"); ?>" value="<?php echo $instance["last_fm_title"]; ?>" type="text" class="widefat">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id("last_fm_user"); ?>"><strong>Title:</strong></label>
-			<input id="<?php echo $this->get_field_id("last_fm_user"); ?>" name="<?php echo $this->get_field_name("last_fm_user"); ?>" value="<?php echo $instance["last_fm_user"]; ?>" size="25">
+			<label for="<?php echo $this->get_field_id("last_fm_user"); ?>">Last.fm Username:</label>
+			<input id="<?php echo $this->get_field_id("last_fm_user"); ?>" name="<?php echo $this->get_field_name("last_fm_user"); ?>" value="<?php echo $instance["last_fm_user"]; ?>" type="text" class="widefat">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id("last_fm_api_key"); ?>"><strong>Title:</strong></label>
-			<input id="<?php echo $this->get_field_id("last_fm_api_key"); ?>" name="<?php echo $this->get_field_name("last_fm_api_key"); ?>" value="<?php echo $instance["last_fm_api_key"]; ?>" size="25">
+			<label for="<?php echo $this->get_field_id("last_fm_api_key"); ?>">Last.fm API Key:</label>
+			<input id="<?php echo $this->get_field_id("last_fm_api_key"); ?>" name="<?php echo $this->get_field_name("last_fm_api_key"); ?>" value="<?php echo $instance["last_fm_api_key"]; ?>" type="text" class="widefat">
 		</p>
 
 	<?php }
