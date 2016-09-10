@@ -44,7 +44,7 @@ class dashifen_last_fm_widget extends WP_Widget {
 					from <a href="http://www.last.fm/music/<?=urlencode($song_data["artist"])?>/<?=urlencode($song_data["album"])?>"><?=$song_data["album"]?></a>
 					<?=$song_data["now_playing"] ? "right now!" : "on ".$song_data["date"]."."; ?></p>
 			<? } else { ?>
-				<img src="<?= plugin_dir_url(__FILE__) . "cd.png" ?>" alt="a compact disc">
+				<img src="<?= plugin_dir_url(__FILE__) . "cd.png" ?>" alt="a compact disc" class="unknown-album">
 
 				<p>Dash <?=$song_data["now_playing"]? "is listening" : "listened"?> to
 					<?=$song_data["song"]?> by <?=$song_data["artist"] ?>
